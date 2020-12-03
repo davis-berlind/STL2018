@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590188472266.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "47170761",
+    "id" : "ECCC8DF9",
+    "lastKnownWriteTime" : 1590448310,
+    "last_content_update" : 1590448310571,
+    "path" : "C:/Users/Davis Berlind/Desktop/Berlind-Steorts-RA/STL2018/R/regresionRL.R",
+    "project_path" : "R/regresionRL.R",
+    "properties" : {
+        "cursorPosition" : "250,61",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

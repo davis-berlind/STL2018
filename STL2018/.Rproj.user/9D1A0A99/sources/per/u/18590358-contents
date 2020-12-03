@@ -1,0 +1,43 @@
+devtools::document()
+devtools::install("../STL2018")
+tst <- STL2018::regressionRL(formula = y ~ x1 + x2, 
+                             data = data_e3, 
+                             key_vars = key_vars,
+                             sample_size = 10000, 
+                             burnin = 500, 
+                             n_chains = 2,
+                             alpha_prior = alpha_prior,
+                             progressbar = TRUE,
+                             lambda_prior = lambda_prior, 
+                             sigma_data_fixed = FALSE)
+
+rm(list = ls()[ls() != "data_e3"])
+data = data_e3
+formula = y ~ x1 + x2
+
+key_vars <- c("fname_c1", "lname_c1", "by", "bm", "bd")
+
+# Uniform Distortion Prior
+alpha_prior <- list(fname_c1 = list(alpha = 1, beta = 1),
+                    lname_c1 = list(alpha = 1, beta = 1),
+                    by = list(alpha = 1, beta = 1),
+                    bm = list(alpha = 1, beta = 1),
+                    bd = list(alpha = 1, beta = 1))
+
+lambda_prior <- list(prior = "uniform")
+
+sigma_data_fixed = TRUE
+sample_size = 10
+burnin = 0;
+thin = 1
+n_chains = 1 
+progressbar = TRUE
+alpha_init = NULL; alpha_proposal = NULL;
+lambda_init = NULL;
+beta_init = NULL; beta_prior = NULL; beta_proposal = NULL;
+sigma_y_init = NULL; sigma_y_prior = NULL; sigma_y_proposal = NULL;
+sigma_x_diag = FALSE;
+sigma_x_init = NULL; sigma_x_prior = NULL; sigma_x_proposal = NULL;
+sigma_data_diag = FALSE;
+sigma_data_init = NULL; sigma_data_prior = NULL; sigma_data_proposal = NULL;
+chain = 1; i = 1; record = 1; 

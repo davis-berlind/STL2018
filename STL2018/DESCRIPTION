@@ -1,0 +1,32 @@
+Package: STL2018
+Type: Package
+Version: 0.1.0
+Date: 2020-05-08
+Title: Steorts, Tancredi, and Liseo (2018) Methods of Record Linkage and Regression
+Authors@R: person("Davis", "Berlind", role = c("aut", "cre"),
+                  email = "davis.berlind@gmail.com")
+Author: Davis Berlind [aut, cre]
+Maintainer: Davis Berlind <davis.berlind@gmail.com>
+Description: This package is an implementation of the methods described in
+     Steorts, R.C., Tancredi, A., Liseo, B. Generalized Bayesian Record
+     Linkage and Regression with Exact Error Propagation, PSD (2018). The
+     methods implemented in this package enable the user to recreate the
+     experiments described in this paper, and allow for further
+     experimentation with joint record linkage and linear regression tasks.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.6.1)
+Import:
+    BB,
+    CholWishart,
+    doParallel,
+    foreach,
+    magrittr,
+    MCMCpack,
+    Matrix,
+    mvnfast,
+    parallel,
+    tcltk,
+    VGAM
+RoxygenNote: 7.1.0

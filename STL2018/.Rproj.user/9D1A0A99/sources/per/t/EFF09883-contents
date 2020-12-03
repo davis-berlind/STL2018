@@ -1,0 +1,18 @@
+source("RegressionRL.R")
+source("PYPSolve.R")
+source("GammaSolve.R")
+
+RLdata500 <- readRDS("RLdata500.rds")
+identity.RLdata500 <- readRDS("identity.RLdata500.rds")
+
+#### Experiment 3 ##############################################################################################################
+
+mu_x_true <- c(0,0)
+sd_x_true <- c(3,3)
+beta <- c(2,4)
+sd_x <- c(0.1,0.1)
+sd_y <- 2
+num_covariates <- 2
+
+true_x <- x_generator(identity.RLdata500, mu_x_true, sd_x_true, num_covariates)
+data_e3 <- data_generator(RLdata500, identity.RLdata500, true_x, sd_x, sd_y, beta, num_covariates)

@@ -1,0 +1,89 @@
+source("RecursiveRL.R")
+source("PYPsolve.R")
+source("GammaSolve.R")
+source("ACFGrid.R")
+
+RLdata500 <- readRDS("RLdata500.rds")
+identity.RLdata500 <- readRDS("identity.RLdata500.rds")
+
+# create test data
+nsingle <- 20
+nduplicate <- 10
+
+freqs <- data.frame(id = identity.RLdata500) %>%
+  group_by(id) %>%
+  summarise(count = n())
+
+ids <- c(sample(freqs$id[freqs$count == 1], size = nsingle),
+         sample(freqs$id[freqs$count != 1], size = nduplicate))
+
+
+test_data <- RLdata500[identity.RLdata500 %in% ids,]
+key_vars <- c("fname_c1", "lname_c1", "by", "bm", "bd")
+
+# setting priors
+pyp_par <- PYPsolve(mn = 8, var = 1.3, N = nrow(test_data))
+
+pyp_prior <- list(prior = "PYP", sigma = pyp_par[["sigma"]], nu = pyp_par[["nu"]])
+
+uni_prior <- list(prior = "uniform", N = nrow(test_data))
+
+# Uniform Distortion Prior
+alpha_prior <- list(fname_c1 = list(alpha = 1, beta = 1),
+                    lname_c1 = list(alpha = 1, beta = 1),
+                    by = list(alpha = 1, beta = 1),
+                    bm = list(alpha = 1, beta = 1),
+                    bd = list(alpha = 1, beta = 1))
+
+test <- recursiveRL(test_data, key_vars, burnin = 500, sample_size = 1000, thin = 5,
+                    alpha_prior = alpha_prior,
+                    lambda_prior = uni_prior)
+
+N <- nrow(test$lambda)
+
+ent_trace <- apply(test$lambda, 1, n_distinct) %>%
+  data.frame(entities = .) %>%
+  ggplot() +
+  geom_line(aes(x = 1:N, y = entities),
+            size = 1) +
+  geom_line(aes(x = 1:N,
+                y = cumsum(entities)/1:N,
+                color = "Moving Average"),
+            size = 1) +
+  theme_minimal() +
+  labs(title = "Trace Plot of # of Entities", y = "# of Entities", x = "Itertion",
+       color = "") +
+  theme(legend.position="bottom")
+
+ent_dist <- apply(test$lambda, 1, n_distinct) %>%
+  data.frame(entities = .) %>%
+  ggplot(aes(entities)) +
+  geom_bar()  +
+  geom_vline(xintercept = 20, linetype = 2, color = "red") +
+  theme_minimal() +
+  labs(title = "Distribution of # Entities", x = "# of Entities")
+
+grid.arrange(ent_trace, ent_dist)
+
+acf(apply(test$lambda, 1, n_distinct), main = "ACF of # of Entities")
+
+colnames(test$alpha) <- key_vars
+
+melt(test$alpha) %>%
+  select(-Var1) %>%
+  rename(field = Var2, alpha = value) %>%
+  mutate(iteration = rep(1:nrow(test$alpha), length(key_vars))) %>%
+  ggplot( aes(x = iteration, y=alpha)) +
+  geom_line(size=0.1) + facet_grid(field~., scales = "free_y") +
+  theme(legend.position = "none") +
+  theme_bw() +
+  xlab("Iteration") + ylab("alpha")+
+  ggtitle("Trace Plot of Distortion Probability")
+
+melt(test$alpha) %>%
+  select(-Var1) %>%
+  rename(field = Var2, alpha = value) %>%
+  mutate(iteration = rep(1:nrow(test$alpha), length(key_vars))) %>%
+  acfGrid("field", "alpha") +
+  theme_bw() +
+  ggtitle("ACF Plot of Distortion Probability")

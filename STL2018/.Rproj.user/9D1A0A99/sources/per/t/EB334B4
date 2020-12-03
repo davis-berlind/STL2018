@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590188644287.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3860087775",
+    "id" : "EB334B4",
+    "lastKnownWriteTime" : 1590446209,
+    "last_content_update" : 1590446209815,
+    "path" : "C:/Users/Davis Berlind/Desktop/Berlind-Steorts-RA/STL2018/R/metropolis_functions.R",
+    "project_path" : "R/metropolis_functions.R",
+    "properties" : {
+        "cursorPosition" : "154,56",
+        "scrollLine" : "145",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

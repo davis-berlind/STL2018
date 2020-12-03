@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590216349401.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "947636943",
+    "id" : "C33C00C7",
+    "lastKnownWriteTime" : 1590221290,
+    "last_content_update" : 1590221290355,
+    "path" : "C:/Users/Davis Berlind/Desktop/Berlind-Steorts-RA/STL2018/R/priors.R",
+    "project_path" : "R/priors.R",
+    "properties" : {
+        "cursorPosition" : "237,36",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "215",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

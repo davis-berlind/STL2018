@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590218887544.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3078778780",
+    "id" : "3021C6A8",
+    "lastKnownWriteTime" : 1590379119,
+    "last_content_update" : 1590379119039,
+    "path" : "C:/Users/Davis Berlind/Desktop/Berlind-Steorts-RA/STL2018/R/recursiveRL.R",
+    "project_path" : "R/recursiveRL.R",
+    "properties" : {
+        "cursorPosition" : "72,21",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
